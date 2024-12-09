@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIKKE Character</title>
+    <script src="characters.js"></script>
+    <script>
+        function setOpenGraphTags() {
+            // URL에서 캐릭터 ID 추출
+            const path = window.location.pathname;
+            const characterId = path.split('/').pop();
+
+            if (characters[characterId]) {
+                const character = characters[characterId];
+                const fullImageUrl = `${window.location.origin}/nikke/${character.image}`;
+                
+                // OG 태그 동적 생성
+                document.querySelector('meta[property="og:title"]').setAttribute('content', `${character.name} - NIKKE`);
+                document.querySelector('meta[property="og:image"]').setAttribute('content', fullImageUrl);
+                document.querySelector('meta[property="og:url"]').setAttribute('content', window.location.href);
+                
+                // 페이지 내용 업데이트
+                document.getElementById('characterName').textContent = character.name;
+                document.getElementById('characterImage').src = character.image;
+            }
+        }
+        
+        window.onload = setOpenGraphTags;
+    </script>
+</head>
+<body>
+    <!-- 기본 OG 태그 -->
+    <meta property="og:title" content="NIKKE Character">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:description" content="NIKKE 캐릭터 정보">
+    
+    <!-- 페이지 컨텐츠 -->
+    <div style="text-align: center; padding: 20px;">
+        <h1 id="characterName"></h1>
+        <img id="characterImage" style="max-width: 500px;" alt="Character Image">
+    </div>
+</body>
+</html>
