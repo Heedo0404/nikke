@@ -1,7 +1,7 @@
 const characters = {
   dorosi: {
     name: "도로시",
-    image: "images/dorosi.png"
+    image: "images/dorosi.jpg"
   },
   rapi: {
     name: "라피",
